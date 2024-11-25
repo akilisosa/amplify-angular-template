@@ -19,6 +19,7 @@ export class TodosComponent implements OnInit {
     this.listTodos();
   }
 
+
   listTodos() {
     try {
       client.models.Todo.observeQuery().subscribe({
@@ -31,12 +32,11 @@ export class TodosComponent implements OnInit {
     }
   }
 
-  createTodo() {
+  async createTodo() {
     try {
-      client.models.Todo.create({
+     await client.models.Todo.create({
         content: window.prompt('Todo content'),
       });
-      this.listTodos();
     } catch (error) {
       console.error('error creating todos', error);
     }
